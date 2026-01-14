@@ -17,7 +17,7 @@ from utils.model import create_model, train_model, predict_next_day
 st.set_page_config(
     page_title="Apex AI - Stock Prediction",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="auto"
 )
 
 # --- CUSTOM CSS FOR DARK MODE & GLASSMORPHISM ---
@@ -57,6 +57,16 @@ st.markdown("""
         border-radius: 5px;
         border: none;
         width: 100%;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .metric-card {
+            margin-bottom: 10px;
+        }
+        .stColumns {
+            flex-direction: column;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
@@ -103,7 +113,7 @@ if ticker:
         scaler, scaled_data = normalize_data(df, feature_column='Close')
         
         # Create Sequences
-        time_step = 60
+        time_step = 100
         X, y = create_sequences(scaled_data, time_step)
         
         # Reshape for LSTM (samples, time steps, features)
@@ -226,12 +236,14 @@ if ticker:
         fig = go.Figure()
         
         # Historical
-        fig.add_trace(go.Scatter(
-            x=df.index, 
-            y=df['Close'], 
-            mode='lines', 
-            name='Historical Price',
-            line=dict(color='#00d2aa')
+        # Historical Candlestick
+        fig.add_trace(go.Candlestick(
+            x=df.index,
+            open=df['Open'],
+            high=df['High'],
+            low=df['Low'],
+            close=df['Close'],
+            name='OHLC'
         ))
         
         # SMA

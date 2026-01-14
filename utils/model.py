@@ -1,7 +1,8 @@
 import numpy as np
 import tensorflow as pd
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.layers import LSTM, Dense, Dropout
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
 def create_model(input_shape):
     """
@@ -10,20 +11,27 @@ def create_model(input_shape):
     model = Sequential()
     # First LSTM layer with Return Sequences to feed into the next LSTM layer
     model.add(LSTM(50, return_sequences=True, input_shape=input_shape))
+    model.add(Dropout(0.2))
     # Second LSTM layer
     model.add(LSTM(50, return_sequences=False))
+    model.add(Dropout(0.2))
     # Output layer
     model.add(Dense(1))
     
     model.compile(optimizer='adam', loss='mean_squared_error')
     return model
 
-def train_model(model, X, y, epochs=20, batch_size=32):
+def train_model(model, X, y, epochs=50, batch_size=32):
     """
     Trains the model.
     """
-    # Use a small number of epochs for quick testing if needed, but 20 is standard
-    model.fit(X, y, epochs=epochs, batch_size=batch_size, verbose=1)
+    # Callbacks for smarter training
+    callbacks = [
+        EarlyStopping(monitor='loss', patience=10, restore_best_weights=True),
+        ReduceLROnPlateau(monitor='loss', factor=0.5, patience=5, min_lr=0.0001)
+    ]
+    
+    model.fit(X, y, epochs=epochs, batch_size=batch_size, verbose=1, callbacks=callbacks)
     return model
 
 def predict_next_day(model, last_sequence, scaler):
