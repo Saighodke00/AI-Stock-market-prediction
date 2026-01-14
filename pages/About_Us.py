@@ -45,8 +45,8 @@ with col1:
     st.markdown("""
     <div class="member-card">
         <div class="member-name">Sai Narendra Ghodke</div>
-        <div class="member-role">Team Member</div>
-        <p>Contribution: [Add details if available, e.g., Model Development]</p>
+        <div class="member-role">Lead AI Architect & Developer</div>
+        <p>Contribution: Spearheaded the development of the LSTM neural network architecture and orchestrated the end-to-end system design. Focused on model optimization and predictive accuracy.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -54,8 +54,8 @@ with col2:
     st.markdown("""
     <div class="member-card">
         <div class="member-name">Siddhartha Vijay Bhosale</div>
-        <div class="member-role">Team Member</div>
-        <p>Contribution: [Add details if available, e.g., Data Analysis]</p>
+        <div class="member-role">Data Scientist & Quantitative Analyst</div>
+        <p>Contribution: Led the data acquisition and preprocessing pipelines. Implemented technical indicators (RSI, SMA) and the core trading logic algorithms.</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -63,8 +63,8 @@ with col3:
     st.markdown("""
     <div class="member-card">
         <div class="member-name">Sunraj Shetty</div>
-        <div class="member-role">Team Member</div>
-        <p>Contribution: [Add details if available, e.g., UI/UX Design]</p>
+        <div class="member-role">Frontend Engineer & UI/UX Specialist</div>
+        <p>Contribution: Designed the glassmorphism-inspired user interface. Ensured responsive layout and seamless user experience across the dashboard.</p>
     </div>
     """, unsafe_allow_html=True)
 

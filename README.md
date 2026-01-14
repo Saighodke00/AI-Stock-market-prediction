@@ -38,9 +38,9 @@ streamlit run app.py
 - `utils/backtest.py`: Backtesting engine.
 
 ## Team
-- **Sai Narendra Ghodke**
-- **Siddhartha Vijay Bhosale**
-- **Sunraj Shetty**
+- **Sai Narendra Ghodke** - *Lead AI Architect & Developer*
+- **Siddhartha Vijay Bhosale** - *Data Scientist & Quantitative Analyst*
+- **Sunraj Shetty** - *Frontend Engineer & UI/UX Specialist*
 
 ## License
 Educational Purpose Only.
